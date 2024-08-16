@@ -1,7 +1,8 @@
 import { useContext, useEffect, useState } from "react";
 import { Link, NavLink } from "react-router-dom";
-import { AuthContext } from "../../provider/AuthProvider";
+
 import { toast } from "react-toastify";
+import { AuthContext } from "../../provider/AuthProvider";
 // import logo from "../../assets/images/PikPng.com_graphic-designing-png_821269.png";
 const Navbar = () => {
   const { user, logOut } = useContext(AuthContext);
