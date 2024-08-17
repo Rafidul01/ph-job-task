@@ -54,7 +54,7 @@ const Login = () => {
       setEye(!eye);
     }
     return (
-      <div className="hero min-h-screen font-poppins bg-[url('https://i.ibb.co/hBms6wX/birmingham-museums-trust-hc-XPIKs-C2-PM-unsplash.jpg')] rounded-2xl border-2  border-[#973E12] py-8 bg-center bg-cover ">
+      <div className="hero min-h-screen font-poppins bg-[url('https://i.ibb.co/hBms6wX/birmingham-museums-trust-hc-XPIKs-C2-PM-unsplash.jpg')] rounded-2xl border-2  border-[#74C138] py-8 bg-center bg-cover ">
         <div className="flex flex-col justify-center items-center ">
           <div className="text-center lg:text-left w-full md:w-[1/2] md:rounded-r-2xl flex justify-center items-center p-4 " data-aos="flip-right"
                 data-aos-easing="ease-out-cubic"
@@ -97,7 +97,7 @@ const Login = () => {
                   <Link onClick={handelSeePass} className="text-2xl absolute right-3 top-[48px]">{eye ? <FaRegEye />:<FaRegEyeSlash />}</Link>
                 </div>
                 <div className="form-control mt-6">
-                  <button className="btn hover:bg-[#973E12] bg-transparent text-[#973E12] border-[#973E12] hover:text-white">Login</button>
+                  <button className="btn hover:bg-[#74C138] bg-transparent text-[#74C138] border-[#74C138] hover:text-white">Login</button>
                 </div>
               </form>
               <div>
@@ -112,14 +112,14 @@ const Login = () => {
                     <div className="flex justify-center items-center gap-4">
                       <button
                         onClick={handleGoogleLogIn}
-                        className="btn bg-transparent border-[#973E12] hover:bg-[#973E12] hover:text-white text-[#973E12]"
+                        className="btn bg-transparent border-[#74C138] hover:bg-[#74C138] hover:text-white text-[#74C138]"
                       >
                         <FaGoogle />
                         Google
                       </button>
                       <button
                         onClick={handleGithubLogin}
-                        className="btn bg-transparent border-[#973E12] hover:bg-[#973E12] hover:text-white text-[#973E12]"
+                        className="btn bg-transparent border-[#74C138] hover:bg-[#74C138] hover:text-white text-[#74C138]"
                       >
                         <FaGithub></FaGithub> Github
                       </button>
@@ -129,7 +129,7 @@ const Login = () => {
                     New to Sweet Stay? Please{" "}
                     <Link
                       to="/register"
-                      className="font-bold text-[#973E12] hover:text-[#973E12cc]"
+                      className="font-bold text-[#74C138] hover:text-[#74C138cc]"
                     >
                       Register
                     </Link>

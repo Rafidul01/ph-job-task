@@ -56,8 +56,10 @@ const Home = () => {
     setCurrentPage(1);
   };
 
+  
+
   return (
-    <div className="container mx-auto p-4">
+    <div className="container mx-auto p-4 min-h-[calc(100vh-320px)]">
       <h1 className="text-4xl font-bold text-center mb-8 text-[#74C138]">Products</h1>
 
       <div className="flex flex-col-reverse md:flex-row gap-4 justify-center items-center mb-8">
@@ -150,6 +152,10 @@ const Home = () => {
 
         {/* reset */}
       </div>
+
+      {
+        products.length === 0 ? <h1 className="mt-36 text-2xl font-bold text-center mb-8 text-black">No Products Found...!</h1> : null
+      }
 
 
       <div className="grid grid-cols-1  gap-4">

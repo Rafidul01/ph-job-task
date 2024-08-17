@@ -58,7 +58,7 @@ const Register = () => {
       setEye(!eye);
     }
   return (
-    <div className="hero min-h-screen font-poppins bg-[url('https://i.ibb.co/hBms6wX/birmingham-museums-trust-hc-XPIKs-C2-PM-unsplash.jpg')] rounded-2xl border-2  border-[#973E12] py-8 bg-center bg-cover ">
+    <div className="hero min-h-screen font-poppins bg-[url('https://i.ibb.co/hBms6wX/birmingham-museums-trust-hc-XPIKs-C2-PM-unsplash.jpg')] rounded-2xl border-2  border-[#74C138] py-8 bg-center bg-cover ">
 
       <div className="flex flex-col justify-center items-center ">
         <div
@@ -138,23 +138,23 @@ const Register = () => {
               <span className="font-bold">Note : </span>
               <small className="text-black ">
                 Your password must be at least{" "}
-                <span className="text-[#973E12]">6 characters</span> and
+                <span className="text-[#74C138]">6 characters</span> and
                 includes{" "}
-                <span className="text-[#973E12]">
+                <span className="text-[#74C138]">
                   an Uppercase and a Lowercase
                 </span>{" "}
                 character.
               </small>
             </p>
             <div className="form-control mt-6">
-              <button className="btn bg-transparent hover:bg-[#973E12] border-[#973E12] text-[#973E12]  hover:text-white">Register</button>
+              <button className="btn bg-transparent hover:bg-[#74C138] border-[#74C138] text-[#74C138]  hover:text-white">Register</button>
             </div>
 
             <p className="text-center font-roboto text-lg">
               Already Registered to Sweet Stay? Please{" "}
               <Link
                 to="/login"
-                className="font-bold text-[#973E12] hover:text-[#973E12cc] "
+                className="font-bold text-[#74C138] hover:text-[#74C138cc] "
               >
                 Login
               </Link>
