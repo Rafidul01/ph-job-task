@@ -12,7 +12,7 @@ const Home = () => {
   const [totalPages, setTotalPages] = useState(1);
   useEffect(() => {
     fetch(
-      `http://localhost:5000/products?brand=${filterBrand}&category=${filterCategory}&price=${filterPriceRange}&sort=${sort}&search=${search}&page=${currentPage}&limit=5`
+      `https://job-task-server-ebon.vercel.app/products?brand=${filterBrand}&category=${filterCategory}&price=${filterPriceRange}&sort=${sort}&search=${search}&page=${currentPage}&limit=5`
     )
       .then((res) => res.json())
       .then((data) => {

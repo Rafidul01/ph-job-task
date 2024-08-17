@@ -11,6 +11,7 @@ import Home from './pages/Home/Home';
 import AuthProvider from './provider/AuthProvider';
 import Login from './pages/Login/Login';
 import Register from './pages/Register/Register';
+import PrivateRoute from './routes/PrivateRoute';
 
 const router = createBrowserRouter([
   {
@@ -19,7 +20,7 @@ const router = createBrowserRouter([
     children: [
       {
         path: "/",
-        element: <Home></Home>
+        element: <PrivateRoute><Home></Home></PrivateRoute>
       },
       {
         path: "/login",
