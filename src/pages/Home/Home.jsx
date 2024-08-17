@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import ProductCard from "./ProductCard";
-import { Link } from "react-router-dom";
 
 const Home = () => {
   const [products, setProducts] = useState([]);
@@ -9,11 +8,18 @@ const Home = () => {
   const [filterPriceRange, setFilterPriceRange] = useState("0-100000");
   const [sort, setSort] = useState("");
   const [search, setSearch] = useState("");
+  const [currentPage, setCurrentPage] = useState(1);
+  const [totalPages, setTotalPages] = useState(1);
   useEffect(() => {
-    fetch(`http://localhost:5000/products?brand=${filterBrand}&category=${filterCategory}&price=${filterPriceRange}&sort=${sort}&search=${search}`)
+    fetch(
+      `http://localhost:5000/products?brand=${filterBrand}&category=${filterCategory}&price=${filterPriceRange}&sort=${sort}&search=${search}&page=${currentPage}&limit=5`
+    )
       .then((res) => res.json())
-      .then((data) => setProducts(data));
-  }, [filterBrand, filterCategory, filterPriceRange, sort, search]);
+      .then((data) => {
+        setProducts(data.products);
+        setTotalPages(data.totalPages);
+      });
+  }, [filterBrand, filterCategory, filterPriceRange, sort, currentPage, search]);
   console.log(products);
 
   const handleSearch = (e) => {
@@ -22,31 +28,32 @@ const Home = () => {
     const search = form.get("search");
     setSearch(search);
     console.log(search);
-    
+  };
+
+  const handlePageChange = (newPage) => {
+    if (newPage > 0 && newPage <= totalPages) {
+      setCurrentPage(newPage);
+    }
   };
 
   const handleSort = (e) => {
     setSort(e.target.value);
+    setCurrentPage(1);
   };
 
   const handlePriceRange = (e) => {
     setFilterPriceRange(e.target.value);
+    setCurrentPage(1);
   };
 
   const handleCategory = (e) => {
     setFilterCategory(e.target.value);
-  } 
+    setCurrentPage(1);
+  };
 
   const handleBrand = (e) => {
     setFilterBrand(e.target.value);
-  };
-  const handleReset = () => {
-    // setFilter(null);
-    // setSearch("");
-    document.getElementById("handleReSet").value = "";
-    document.getElementById("mySelect").selectedIndex = 0;
-    
-    
+    setCurrentPage(1);
   };
 
   return (
@@ -59,14 +66,15 @@ const Home = () => {
           <select
             className="select select-bordered"
             name="serviceArea"
-            id="mySelect" 
+            id="mySelect"
             required
             // defaultValue={filterBrand ? filterBrand : "Filter"}
             onChange={handleBrand}
             defaultValue={"brand"}
-            
           >
-            <option value={"brand"} disabled>Brand</option>
+            <option value={"brand"} disabled>
+              Brand
+            </option>
             <option>Apple</option>
             <option>Samsung</option>
             <option>LG</option>
@@ -75,13 +83,14 @@ const Home = () => {
           <select
             className="select select-bordered"
             name="serviceArea"
-            id="mySelect" 
-            
+            id="mySelect"
             required
             defaultValue="category"
             onChange={handleCategory}
           >
-            <option value={"category"} disabled>Category</option>
+            <option value={"category"} disabled>
+              Category
+            </option>
             <option>Smartphone</option>
             <option>Laptop</option>
             <option>TV</option>
@@ -90,13 +99,14 @@ const Home = () => {
           <select
             className="select select-bordered"
             name="serviceArea"
-            id="mySelect" 
-            
+            id="mySelect"
             required
             defaultValue="price"
             onChange={handlePriceRange}
           >
-            <option value={"price"} disabled>Price Range</option>
+            <option value={"price"} disabled>
+              Price Range
+            </option>
             <option>0-1000</option>
             <option>1000-2000</option>
             <option>2000-3000</option>
@@ -106,24 +116,20 @@ const Home = () => {
           <select
             className="select select-bordered"
             name="serviceArea"
-            id="mySelect" 
-            
+            id="mySelect"
             required
             defaultValue="price"
             onChange={handleSort}
           >
-            <option value={"price"} disabled>Sort</option>
+            <option value={"price"} disabled>
+              Sort
+            </option>
             <option>Low to High</option>
             <option>High to Low</option>
             <option>Newest first</option>
           </select>
 
           {/* reset */}
-        <div className="block md:hidden">
-          <Link onClick={handleReset} className="btn ">
-            Reset
-          </Link>
-        </div>
         </div>
 
         {/* search */}
@@ -143,11 +149,6 @@ const Home = () => {
         </div>
 
         {/* reset */}
-        <div className="hidden md:block">
-          <Link onClick={handleReset} className="btn ">
-            Reset
-          </Link>
-        </div>
       </div>
 
       <div className="grid grid-cols-1  gap-4">
@@ -155,7 +156,33 @@ const Home = () => {
           <ProductCard key={product._id} product={product} />
         ))}
       </div>
+
+      <div className="flex justify-center items-center mt-4">
+      <button className="btn bg-green-300" onClick={() => handlePageChange(currentPage - 1)} disabled={currentPage === 1}>
+        {"<<"}Previous
+      </button>
+      
+      <span>
+      {
+      Array.from({ length: totalPages }, (_, index) => index + 1).map((page) => (
+        <button
+          key={page}
+          onClick={() => handlePageChange(page)}
+          
+          className={`btn mx-[5px]  border border-green-400 rounded-full ${page === currentPage ? "bg-green-400 text-white" : "bg-transparent text-black"}`}
+          
+        >
+          {page}
+        </button>
+      ))
+    }
+      </span>
+      <button className="btn bg-green-300" onClick={() => handlePageChange(currentPage + 1)} disabled={currentPage === totalPages}>
+        Next{">>"}
+      </button>
     </div>
+    </div>
+    
   );
 };
 

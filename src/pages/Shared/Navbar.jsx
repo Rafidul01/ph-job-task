@@ -34,10 +34,10 @@ const Navbar = () => {
 
   const links = (
     <>
-      <li className="hover:text-[#973E12]">
+      <li className="hover:text-[#74C138]">
         <NavLink
           className={({ isActive }) =>
-            isActive ? "border border-[#973E12] text-[#973E12] font-bold" : ""
+            isActive ? "border border-[#74C138] text-[#74C138] font-bold" : ""
           }
           to="/"
         >
@@ -46,10 +46,10 @@ const Navbar = () => {
       </li>
       
       {/* {user && (
-        <li className="hover:text-[#973E12]">
+        <li className="hover:text-[#74C138]">
           <NavLink
             className={({ isActive }) =>
-              isActive ? "border border-[#973E12] text-[#973E12] font-bold" : ""
+              isActive ? "border border-[#74C138] text-[#74C138] font-bold" : ""
             }
             to={`/myArtAndCraft/${user.email}`}
           >
@@ -89,7 +89,7 @@ const Navbar = () => {
             <li>
             <Link
               onClick={handleLogOut}
-              className="btn bg-[#973E12]  text-white font-poppins rounded-3xl min-h-0 h-10 md:min-h-[3rem] md:h-[3rem]"
+              className="btn bg-[#74C138]  text-white font-poppins rounded-3xl min-h-0 h-10 md:min-h-[3rem] md:h-[3rem]"
             >
               LogOut
             </Link>
@@ -101,7 +101,7 @@ const Navbar = () => {
             <li>
             <Link
               to="/login"
-              className="btn bg-[#973E12]  text-white font-poppins rounded-3xl min-h-0 h-10 md:min-h-[3rem] md:h-[3rem]"
+              className="btn bg-[#74C138]  text-white font-poppins rounded-3xl min-h-0 h-10 md:min-h-[3rem] md:h-[3rem]"
             >
               Login
             </Link>
@@ -109,7 +109,7 @@ const Navbar = () => {
             <li>
             <Link
               to="/register"
-              className=" btn bg-[#973E12] text-white font-poppins rounded-3xl min-h-0 h-10 md:min-h-[3rem] md:h-[3rem]"
+              className=" btn bg-[#74C138] text-white font-poppins rounded-3xl min-h-0 h-10 md:min-h-[3rem] md:h-[3rem]"
             >
               Register
             </Link>
@@ -125,7 +125,7 @@ const Navbar = () => {
           {/* <img 
           src={logo} 
           alt="" className="h-9" /> */}
-          <span className="text-[#973E12]">Product</span> House
+          <span className="text-[#74C138]">Product</span> House
         </Link>
       </div>
       <div className="navbar-center hidden lg:flex">
@@ -140,13 +140,13 @@ const Navbar = () => {
               className="avatar hover:tooltip hover:tooltip-open hover:tooltip-bottom"
               data-tip={user.displayName}
             >
-              <div className="w-6 md:w-8 mr-2 md:mr-4 rounded-full ring ring-[#973E12] ring-offset-base-100 ring-offset-2 ">
+              <div className="w-6 md:w-8 mr-2 md:mr-4 rounded-full ring ring-[#74C138] ring-offset-base-100 ring-offset-2 ">
                 <img src={user.photoURL} />
               </div>
             </div>
             <Link
               onClick={handleLogOut}
-              className="hidden md:flex btn bg-[#973E12]  text-white font-poppins rounded-3xl min-h-0 h-10 md:min-h-[3rem] md:h-[3rem]"
+              className="hidden md:flex btn bg-[#74C138]  text-white font-poppins rounded-3xl min-h-0 h-10 md:min-h-[3rem] md:h-[3rem]"
             >
               LogOut
             </Link>
@@ -155,13 +155,13 @@ const Navbar = () => {
           <>
             <Link
               to="/login"
-              className="btn hidden md:flex bg-[#973E12]  text-white font-poppins rounded-3xl min-h-0 h-10 md:min-h-[3rem] md:h-[3rem]"
+              className="btn hidden md:flex bg-[#74C138]  text-white font-poppins rounded-3xl min-h-0 h-10 md:min-h-[3rem] md:h-[3rem]"
             >
               Login
             </Link>
             <Link
               to="/register"
-              className=" hidden md:flex ml-2 btn bg-[#973E12] text-white font-poppins rounded-3xl min-h-0 h-10 md:min-h-[3rem] md:h-[3rem]"
+              className=" hidden md:flex ml-2 btn bg-[#74C138] text-white font-poppins rounded-3xl min-h-0 h-10 md:min-h-[3rem] md:h-[3rem]"
             >
               Register
             </Link>
@@ -183,7 +183,7 @@ const Navbar = () => {
 
           {/* sun icon */}
           <svg
-            className="swap-off fill-current w-8 h-8 md:w-10 md:h-10 text-[#973E12]  "
+            className="swap-off fill-current w-8 h-8 md:w-10 md:h-10 text-[#74C138]  "
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 24 24"
           >
@@ -192,7 +192,7 @@ const Navbar = () => {
 
           {/* moon icon */}
           <svg
-            className="swap-on fill-current w-8 h-8 md:w-10 md:h-10  text-[#973E12]"
+            className="swap-on fill-current w-8 h-8 md:w-10 md:h-10  text-[#74C138]"
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 24 24"
           >
