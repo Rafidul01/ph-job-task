@@ -1,17 +1,15 @@
-import { StrictMode } from 'react'
-import { createRoot } from 'react-dom/client'
-import './index.css'
+import { StrictMode } from "react";
+import { createRoot } from "react-dom/client";
+import "./index.css";
 
-import {
-  createBrowserRouter,
-  RouterProvider,
-} from "react-router-dom";
-import MainLayout from './layouts/MainLayout';
-import Home from './pages/Home/Home';
-import AuthProvider from './provider/AuthProvider';
-import Login from './pages/Login/Login';
-import Register from './pages/Register/Register';
-import PrivateRoute from './routes/PrivateRoute';
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import MainLayout from "./layouts/MainLayout";
+import Home from "./pages/Home/Home";
+import AuthProvider from "./provider/AuthProvider";
+import Login from "./pages/Login/Login";
+import Register from "./pages/Register/Register";
+import PrivateRoute from "./routes/PrivateRoute";
+import { HelmetProvider } from "react-helmet-async";
 
 const router = createBrowserRouter([
   {
@@ -20,25 +18,30 @@ const router = createBrowserRouter([
     children: [
       {
         path: "/",
-        element: <PrivateRoute><Home></Home></PrivateRoute>
+        element: (
+          <PrivateRoute>
+            <Home></Home>
+          </PrivateRoute>
+        ),
       },
       {
         path: "/login",
-        element:<Login></Login>
+        element: <Login></Login>,
       },
       {
         path: "/register",
-        element: <Register></Register>
-      }
+        element: <Register></Register>,
+      },
     ],
   },
 ]);
 
-createRoot(document.getElementById('root')).render(
+createRoot(document.getElementById("root")).render(
   <StrictMode>
-    <AuthProvider>
-    <RouterProvider router={router} />
-    </AuthProvider>
-   
-  </StrictMode>,
-)
+    <HelmetProvider>
+      <AuthProvider>
+        <RouterProvider router={router} />
+      </AuthProvider>
+    </HelmetProvider>
+  </StrictMode>
+);

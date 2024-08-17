@@ -4,80 +4,78 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../provider/AuthProvider";
 import { updateProfile } from "firebase/auth";
 import { toast } from "react-toastify";
-
+import { Helmet } from "react-helmet-async";
 
 const Register = () => {
+  const { createUser, setUpdate, update } = useContext(AuthContext);
+  const [eye, setEye] = useState(false);
+  const location = useLocation();
+  const navigate = useNavigate();
+  const handleRegister = (e) => {
+    e.preventDefault();
+    const form = new FormData(e.target);
+    const name = form.get("name");
+    const email = form.get("email");
+    const photo = form.get("photoUrl");
+    const password = form.get("password");
 
-    const { createUser, setUpdate, update} = useContext(AuthContext);
-    const [eye, setEye] = useState(false);
-    const location = useLocation();
-    const navigate = useNavigate();
-    const handleRegister = (e) =>{
-        e.preventDefault();
-        const form = new FormData(e.target);
-        const name = form.get('name');
-        const email = form.get('email');
-        const photo = form.get('photoUrl');
-        const password = form.get('password');
-
-        if(password.length < 6){
-          toast.error("Password must be at least 6 characters !")
-          return;
-        }
-        else if(!/[A-Z]/.test(password)){
-          toast.error("Password must have an Uppercase letter!")
-          return;
-        }
-        else if(!/[a-z]/.test(password)){
-          toast.error("Password must have a Lowercase letter!")
-          return;
-        }
-
-        createUser(email,password)
-        .then(result => {
-            console.log(result.user)
-            updateProfile(result.user,{
-                displayName: name,
-                photoURL: photo
-            })
-            .then(()=>{
-              setUpdate(!update);
-            })
-            .catch()
-            e.target.reset();
-            navigate(location?.state ? location.state : '/');
-            toast.success("Registered Successful!");
-        })
-        .catch(error => {
-            console.error(error);
-            toast.error("Sign Up Failed!");
-        })
-        console.log(name,email,photo,password);
+    if (password.length < 6) {
+      toast.error("Password must be at least 6 characters !");
+      return;
+    } else if (!/[A-Z]/.test(password)) {
+      toast.error("Password must have an Uppercase letter!");
+      return;
+    } else if (!/[a-z]/.test(password)) {
+      toast.error("Password must have a Lowercase letter!");
+      return;
     }
-    const handelSeePass = () =>{
-      setEye(!eye);
-    }
+
+    createUser(email, password)
+      .then((result) => {
+        console.log(result.user);
+        updateProfile(result.user, {
+          displayName: name,
+          photoURL: photo,
+        })
+          .then(() => {
+            setUpdate(!update);
+          })
+          .catch();
+        e.target.reset();
+        navigate(location?.state ? location.state : "/");
+        toast.success("Registered Successful!");
+      })
+      .catch((error) => {
+        console.error(error);
+        toast.error("Sign Up Failed!");
+      });
+    console.log(name, email, photo, password);
+  };
+  const handelSeePass = () => {
+    setEye(!eye);
+  };
   return (
-    <div className="hero min-h-screen font-poppins bg-[url('https://i.ibb.co/hBms6wX/birmingham-museums-trust-hc-XPIKs-C2-PM-unsplash.jpg')] rounded-2xl border-2  border-[#74C138] py-8 bg-center bg-cover ">
+    <div className="hero min-h-screen font-poppins bg-[url('https://i.ibb.co/6y2Wx0f/kenny-leys-BL-jv-ec-Y64-unsplash.jpg')] rounded-2xl border-2  border-[#74C138] py-8 bg-center bg-cover ">
+      <Helmet>
+        <title>Product House || Register</title>
+      </Helmet>
 
       <div className="flex flex-col justify-center items-center ">
-        <div
-          className="text-center lg:text-left w-full  md:rounded-r-2xl flex justify-center items-center p-4 "
-        >
+        <div className="text-center lg:text-left w-full  md:rounded-r-2xl flex justify-center items-center p-4 ">
           <div className="text-center  p-2 rounded-2xl">
-            <h1 className="text-3xl md:text-5xl font-bold text-black">
-            Register Now
+            <h1 className="text-3xl md:text-5xl font-bold text-white">
+              Register Now
             </h1>
             <div className="py-6  text-black opacity-80  space-y-4">
-              <p className="max-w-3xl text-sm md:text-base">
-              Sign in to unlock exclusive access to our art and craft collection. Browse, save favorites, and enjoy personalized recommendations. Not a member? Join now to discover a world of creativity!</p>
+              <p className="max-w-3xl text-sm text-white">
+                Sign in to get the best products!
+              </p>
             </div>
           </div>
         </div>
         <div
           onSubmit={handleRegister}
-          className="card shrink-0 md:w-3/4  bg-base-100 bg-opacity-60 rounded-2xl md:rounded-l-2xl"
-          
+          className="card shrink-0 md:w-3/4  bg-base-100 bg-opacity-80 rounded-2xl md:rounded-l-2xl"
         >
           <form className="card-body ">
             <div className="form-control">
@@ -147,7 +145,9 @@ const Register = () => {
               </small>
             </p>
             <div className="form-control mt-6">
-              <button className="btn bg-transparent hover:bg-[#74C138] border-[#74C138] text-[#74C138]  hover:text-white">Register</button>
+              <button className="btn bg-transparent hover:bg-[#74C138] border-[#74C138] text-[#74C138]  hover:text-white">
+                Register
+              </button>
             </div>
 
             <p className="text-center font-roboto text-lg">

@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import ProductCard from "./ProductCard";
+import { Helmet } from "react-helmet-async";
 
 const Home = () => {
   const [products, setProducts] = useState([]);
@@ -60,6 +61,9 @@ const Home = () => {
 
   return (
     <div className="container mx-auto p-4 min-h-[calc(100vh-320px)]">
+      <Helmet>
+        <title>Product House || Home</title>
+      </Helmet>
       <h1 className="text-4xl font-bold text-center mb-8 text-[#74C138]">Products</h1>
 
       <div className="flex flex-col-reverse md:flex-row gap-4 justify-center items-center mb-8">
@@ -81,6 +85,7 @@ const Home = () => {
             <option>Samsung</option>
             <option>LG</option>
             <option>Asus</option>
+            <option>Sony</option>
           </select>
           <select
             className="select select-bordered"
