@@ -6,19 +6,31 @@ const Home = () => {
   const [products, setProducts] = useState([]);
   const [filterBrand, setFilterBrand] = useState("");
   const [filterCategory, setFilterCategory] = useState("");
+  const [filterPriceRange, setFilterPriceRange] = useState("0-100000");
+  const [sort, setSort] = useState("");
+  const [search, setSearch] = useState("");
   useEffect(() => {
-    fetch(`http://localhost:5000/products?brand=${filterBrand}&category=${filterCategory}`)
+    fetch(`http://localhost:5000/products?brand=${filterBrand}&category=${filterCategory}&price=${filterPriceRange}&sort=${sort}&search=${search}`)
       .then((res) => res.json())
       .then((data) => setProducts(data));
-  }, [filterBrand, filterCategory]);
+  }, [filterBrand, filterCategory, filterPriceRange, sort, search]);
   console.log(products);
 
   const handleSearch = (e) => {
+    e.preventDefault();
+    const form = new FormData(e.target);
+    const search = form.get("search");
+    setSearch(search);
+    console.log(search);
     
   };
 
-  const handleFilter = (e) => {
+  const handleSort = (e) => {
+    setSort(e.target.value);
+  };
 
+  const handlePriceRange = (e) => {
+    setFilterPriceRange(e.target.value);
   };
 
   const handleCategory = (e) => {
@@ -59,7 +71,6 @@ const Home = () => {
             <option>Samsung</option>
             <option>LG</option>
             <option>Asus</option>
-            <option>All</option>
           </select>
           <select
             className="select select-bordered"
@@ -75,7 +86,6 @@ const Home = () => {
             <option>Laptop</option>
             <option>TV</option>
             <option>Fridge</option>
-            <option>All</option>
           </select>
           <select
             className="select select-bordered"
@@ -84,12 +94,14 @@ const Home = () => {
             
             required
             defaultValue="price"
-            onChange={handleFilter}
+            onChange={handlePriceRange}
           >
             <option value={"price"} disabled>Price Range</option>
             <option>0-1000</option>
             <option>1000-2000</option>
-            <option>2000-infinity</option>
+            <option>2000-3000</option>
+            <option>3000-5000</option>
+            <option>5000-10000</option>
           </select>
           <select
             className="select select-bordered"
@@ -98,7 +110,7 @@ const Home = () => {
             
             required
             defaultValue="price"
-            onChange={handleFilter}
+            onChange={handleSort}
           >
             <option value={"price"} disabled>Sort</option>
             <option>Low to High</option>
