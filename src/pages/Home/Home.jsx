@@ -5,11 +5,12 @@ import { Link } from "react-router-dom";
 const Home = () => {
   const [products, setProducts] = useState([]);
   const [filterBrand, setFilterBrand] = useState("");
+  const [filterCategory, setFilterCategory] = useState("");
   useEffect(() => {
-    fetch(`http://localhost:5000/products?brand=${filterBrand}`)
+    fetch(`http://localhost:5000/products?brand=${filterBrand}&category=${filterCategory}`)
       .then((res) => res.json())
       .then((data) => setProducts(data));
-  }, [filterBrand]);
+  }, [filterBrand, filterCategory]);
   console.log(products);
 
   const handleSearch = (e) => {
@@ -19,6 +20,10 @@ const Home = () => {
   const handleFilter = (e) => {
 
   };
+
+  const handleCategory = (e) => {
+    setFilterCategory(e.target.value);
+  } 
 
   const handleBrand = (e) => {
     setFilterBrand(e.target.value);
@@ -54,6 +59,7 @@ const Home = () => {
             <option>Samsung</option>
             <option>LG</option>
             <option>Asus</option>
+            <option>All</option>
           </select>
           <select
             className="select select-bordered"
@@ -62,13 +68,14 @@ const Home = () => {
             
             required
             defaultValue="category"
-            onChange={handleFilter}
+            onChange={handleCategory}
           >
             <option value={"category"} disabled>Category</option>
             <option>Smartphone</option>
             <option>Laptop</option>
             <option>TV</option>
             <option>Fridge</option>
+            <option>All</option>
           </select>
           <select
             className="select select-bordered"
