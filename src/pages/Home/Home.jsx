@@ -58,7 +58,7 @@ const Home = () => {
 
   return (
     <div className="container mx-auto p-4">
-      <h1 className="text-3xl font-bold underline">this is home</h1>
+      <h1 className="text-4xl font-bold text-center mb-8 text-[#74C138]">Products</h1>
 
       <div className="flex flex-col-reverse md:flex-row gap-4 justify-center items-center mb-8">
         {/* filter */}
@@ -151,18 +151,19 @@ const Home = () => {
         {/* reset */}
       </div>
 
+
       <div className="grid grid-cols-1  gap-4">
         {products.map((product) => (
           <ProductCard key={product._id} product={product} />
         ))}
       </div>
 
-      <div className="flex justify-center items-center mt-4">
+      <div className="flex flex-wrap justify-center items-center mt-4">
       <button className="btn bg-green-300" onClick={() => handlePageChange(currentPage - 1)} disabled={currentPage === 1}>
         {"<<"}Previous
       </button>
       
-      <span>
+      <span >
       {
       Array.from({ length: totalPages }, (_, index) => index + 1).map((page) => (
         <button
